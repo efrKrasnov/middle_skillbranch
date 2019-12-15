@@ -84,7 +84,7 @@ class User private constructor(
 
         val (tempSalt, tempHash) = hash.hashToPair()
         salt = tempSalt
-        passwordHash = salt.plus(tempHash)
+        passwordHash = tempHash
     }
 
     init {
@@ -149,7 +149,7 @@ class User private constructor(
         sendAccessCodeToUser(phone!!, code)
     }
 
-    private fun String.hashToPair(): Pair<String, String?> {
+    private fun String.hashToPair(): Pair<String, String> {
         return this.split(":")
             .filter { it.isNotBlank() }
             .run {
