@@ -88,9 +88,12 @@ object UserHolder {
             if (userString.isNotEmpty())  {
                 val user =
                     parseUser(
-                        userString
+                        userString.trim()
                     )
                 result.add(user)
+                if (!map.containsKey(user.login)) {
+                    map[user.login] = user
+                }
             }
         }
         return result
